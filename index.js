@@ -1,9 +1,5 @@
 function setup() {
-  var canvas = createCanvas(
-    windowWidth - windowWidth * 0.2,
-    windowHeight - windowHeight * 0.2
-  );
-  canvas.parent("canvas-container");
+  createCanvas(400, 400);
 }
 
 function draw() {
