@@ -7,20 +7,27 @@ let cameraZ;
 
 function setup() {
   //Create the canvas
-  createCanvas(400, 400);
+  createCanvas(800, 800);
 
   //Create the PGraphics object. This is what you will be drawing on, see all "pg." before every P5js function calls
-  pg = createGraphics(50, 50, WEBGL);
+  pg = createGraphics(width / 4, height / 4, WEBGL);
   fov = PI / 3;
-  cameraZ = 50;
+  cameraZ = -100;
 }
 
 function draw() {
-  background(0);
-  //IMPORTANT! Tells P5JS to NOT antialias
+  pg.background(0);
+  pg.camera(0, 0, cameraZ, 0, 0, 0, 0, 1, 0);
+  pg.noFill();
+  pg.stroke(255, 0, 0);
+  pg.strokeWeight(pg.width / (width/2));
+
+  pg.push();
+  pg.rotateZ(PI / 4);
+  pg.rotateX(frameCount * 0.01);
+  pg.box(50);
+  pg.pop();
   noSmooth();
 
-  //Basic camera setup for 3D, not super important
-  pg.camera(0, 0, cameraZ, 0, 0, 0, 0, 1, 0);
-  pg.perspective(fov, pg.width / pg.height, 0.001, 1500);
+  image(pg, 0, 0, width, height);
 }
